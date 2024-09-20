@@ -1,6 +1,6 @@
-# netpipes
+# Netpipes
 
-netpipes
+Netpipes.
 
 ## License
 
