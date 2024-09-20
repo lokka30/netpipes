@@ -7,16 +7,6 @@ typedef enum ItemType {
     SINK = 3
 } item_type_t;
 
-/*
-   .PURPOSE
-   Returns a character representation of an Item Type.
-
-   .RETURNS
-   Character representation of item type.
-
-   .ERROR HANDLING
-   Returns null character if an item type value is not handled.
-*/
 char item_type_to_char(item_type_t item_type) {
     switch(item_type) {
         case AIR:
@@ -32,16 +22,6 @@ char item_type_to_char(item_type_t item_type) {
     }
 }
 
-/*
-   .PURPOSE
-   Returns an English string name of a provided Item Type.
-
-   .RETURNS
-   Name representation of Item Type.
-
-   .ERROR HANDLING
-   Returns NULL if an Item Type does not have a switch branch defined.
-   */
 char* item_type_to_str(item_type_t item_type) {
     switch(item_type) {
         case AIR:
