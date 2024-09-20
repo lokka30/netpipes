@@ -1,0 +1,7 @@
+# macOS
+._.git
+.DS_Store
+Thumbs.db
+
+# Build
+*.out
