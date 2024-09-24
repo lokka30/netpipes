@@ -11,9 +11,23 @@ int32_t init_test_plane(item_type_t plane[TEST_PLANE_SIZE][TEST_PLANE_SIZE]) {
     plane[0][0] = SOURCE;
     plane[0][1] = PIPE;
     plane[0][2] = PIPE;
-    plane[0][3] = SINK;
+    plane[0][3] = PIPE;
+    plane[0][4] = PIPE;
+    plane[0][5] = PIPE;
+    plane[0][6] = PIPE;
+    plane[0][7] = SINK;
     plane[1][1] = PIPE;
+    plane[1][5] = PIPE;
+    plane[2][5] = PIPE;
+    plane[3][5] = PIPE;
+    plane[4][5] = SINK;
     plane[2][1] = SINK;
+    plane[3][4] = SOURCE;
+
+    plane[7][5] = SINK;
+    plane[7][6] = PIPE;
+    plane[6][6] = SINK;
+    plane[7][7] = SOURCE;
 
     return 0;
 }
