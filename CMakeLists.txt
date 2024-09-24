@@ -6,9 +6,11 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED True)
 
 set(SOURCES
-    src/netpipes.c
-    src/coords.c
+    src/demo.c
     src/items.c
+    src/misc.c
+    src/networks.c
+    src/netpipes.c
 )
 
 set(CMAKE_BUILD_TYPE Debug)  # or Release
