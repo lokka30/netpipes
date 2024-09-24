@@ -19,7 +19,6 @@ int32_t init_test_plane(item_type_t plane[TEST_PLANE_SIZE][TEST_PLANE_SIZE]) {
 }
 
 int32_t print_test_plane(item_type_t plane[TEST_PLANE_SIZE][TEST_PLANE_SIZE]) {
-
     puts("*** Test Plane Printout ***");
     printf("⬜️");
     for(uint16_t i = 0; i < TEST_PLANE_SIZE; i++) {
@@ -36,7 +35,7 @@ int32_t print_test_plane(item_type_t plane[TEST_PLANE_SIZE][TEST_PLANE_SIZE]) {
                 fprintf(stderr, "unable to convert item_type (int value %d) to char at plane[%u,%u]\n", (int32_t) item_type, i, j);
                 return 1;
             }
-            printf("%s", its);
+            printf(its);
         }
         puts("⬜️");
     }
@@ -56,6 +55,8 @@ static int32_t _demo() {
     puts("");
 
     item_type_t plane[TEST_PLANE_SIZE][TEST_PLANE_SIZE];
+    
+    char tempbuf = 0;
 
     {
         int32_t error = init_test_plane(plane);
@@ -64,6 +65,9 @@ static int32_t _demo() {
             return error;
         }
     }
+    
+    puts("Test plane done. Press enter to print.");
+    scanf("%s", &tempbuf);
 
     {
         int32_t error = print_test_plane(plane);

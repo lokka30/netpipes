@@ -9,6 +9,7 @@ set(SOURCES
     src/netpipes.c
     src/coords.c
     src/items.c
+    src/rce.c
 )
 
 set(CMAKE_BUILD_TYPE Debug)  # or Release
