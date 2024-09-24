@@ -55,6 +55,7 @@ static int32_t _demo() {
     puts("");
 
     item_type_t plane[TEST_PLANE_SIZE][TEST_PLANE_SIZE];
+    
     char tempbuf = 0;
 
     {
@@ -66,7 +67,7 @@ static int32_t _demo() {
     }
     
     puts("Test plane done. Press enter to print.");
-    fgets(&tempbuf, 11, stdin);
+    scanf("%s", &tempbuf);
 
     {
         int32_t error = print_test_plane(plane);
