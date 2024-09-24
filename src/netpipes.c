@@ -1,12 +1,7 @@
 #include <stdio.h>
-#include <stdint.h>
-
 #include "netpipes.h"
 
-
-const uint16_t TEST_PLANE_SIZE = 8;
-
-static int32_t _init_test_plane(item_type_t plane[TEST_PLANE_SIZE][TEST_PLANE_SIZE]) {
+int32_t init_test_plane(item_type_t plane[TEST_PLANE_SIZE][TEST_PLANE_SIZE]) {
     // Set all items to AIR.
     for(uint16_t i = 0; i < TEST_PLANE_SIZE; i++) {
         for(uint16_t j = 0; j < TEST_PLANE_SIZE; j++) {
@@ -25,7 +20,7 @@ static int32_t _init_test_plane(item_type_t plane[TEST_PLANE_SIZE][TEST_PLANE_SI
     return 0;
 }
 
-static int32_t _print_test_plane(item_type_t plane[TEST_PLANE_SIZE][TEST_PLANE_SIZE]) {
+int32_t print_test_plane(item_type_t plane[TEST_PLANE_SIZE][TEST_PLANE_SIZE]) {
 
     puts("*** Test Plane Printout ***");
     putchar('+');
@@ -65,7 +60,7 @@ static int32_t _demo() {
     item_type_t plane[TEST_PLANE_SIZE][TEST_PLANE_SIZE];
 
     {
-        int32_t error = _init_test_plane(plane);
+        int32_t error = init_test_plane(plane);
         if(error) {
             fprintf(stderr, "Unable to initialise test plane, errcode %d\n", error);
             return error;
@@ -73,7 +68,7 @@ static int32_t _demo() {
     }
 
     {
-        int32_t error = _print_test_plane(plane);
+        int32_t error = print_test_plane(plane);
         if(error) {
             fprintf(stderr, "Unable to print test plane, errcode %d\n", error);
             return error;

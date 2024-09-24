@@ -1,11 +1,5 @@
-#include <stdint.h>
-
-typedef enum ItemType {
-    AIR = 0,
-    PIPE = 1,
-    SOURCE = 2,
-    SINK = 3
-} item_type_t;
+#include <stdlib.h>
+#include "items.h"
 
 char item_type_to_char(item_type_t item_type) {
     switch(item_type) {
@@ -34,17 +28,3 @@ char* item_type_to_str(item_type_t item_type) {
             return NULL;
     }
 }
-
-typedef struct Coord2D {
-    int64_t x;
-    int64_t y;
-} coord2d_t;
-
-typedef struct Coord3D {
-    int64_t x;
-    int64_t y;
-    int64_t z;
-} coord3d_t;
-
-
-

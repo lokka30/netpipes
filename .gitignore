@@ -5,3 +5,10 @@ Thumbs.db
 
 # Build
 *.out
+build/
+
+# VS Code
+.vscode
+
+# Local Testing Stuff
+/local/
