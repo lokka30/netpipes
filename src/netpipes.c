@@ -2,14 +2,12 @@
 #include "netpipes.h"
 
 int32_t init_test_plane(item_type_t plane[TEST_PLANE_SIZE][TEST_PLANE_SIZE]) {
-    // Set all items to AIR.
     for(uint16_t i = 0; i < TEST_PLANE_SIZE; i++) {
         for(uint16_t j = 0; j < TEST_PLANE_SIZE; j++) {
             plane[i][j] = AIR;
         }
     }
 
-    // Manually build test environment.
     plane[0][0] = SOURCE;
     plane[0][1] = PIPE;
     plane[0][2] = PIPE;

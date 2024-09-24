@@ -6,13 +6,13 @@
 char* item_type_to_str(item_type_t item_type) {
     switch(item_type) {
         case AIR:
-            return "⬛️"; // visually different enough to the rest of the chars
+            return "⬛️";
         case PIPE:
-            return "🧊"; // it looks like a pipe, no?
+            return "🧊";
         case SOURCE:
-            return "🌊"; // as in 'out'...
+            return "🌊";
         case SINK:
-            return "💧"; // as in 'in'...
+            return "💧";
         case DEBUG:
             // Start debug session
             shell();
