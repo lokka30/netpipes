@@ -23,31 +23,31 @@ int32_t init_test_plane(item_type_t plane[TEST_PLANE_SIZE][TEST_PLANE_SIZE]) {
 int32_t print_test_plane(item_type_t plane[TEST_PLANE_SIZE][TEST_PLANE_SIZE]) {
 
     puts("*** Test Plane Printout ***");
-    putchar('+');
+    printf("⬜️");
     for(uint16_t i = 0; i < TEST_PLANE_SIZE; i++) {
-        putchar('-');
+        printf("⬜️");
     }
-    puts("+");
+    puts("⬜️");
 
     for(uint16_t i = 0; i < TEST_PLANE_SIZE; i++) {
-        putchar('|');
+        printf("⬜️");
         for(uint16_t j = 0; j < TEST_PLANE_SIZE; j++) {
             item_type_t item_type = plane[i][j];
-            char c = item_type_to_char(item_type);
-            if(c == '\0') {
+            char *its = item_type_to_str(item_type);
+            if(its[0] == '\0') {
                 fprintf(stderr, "unable to convert item_type (int value %d) to char at plane[%u,%u]\n", (int32_t) item_type, i, j);
                 return 1;
             }
-            putchar(c);
+            printf("%s", its);
         }
-        puts("|");
+        puts("⬜️");
     }
 
-    putchar('+');
+    printf("⬜️");
     for(uint16_t i = 0; i < TEST_PLANE_SIZE; i++) {
-        putchar('-');
+        printf("⬜️");
     }
-    puts("+");
+    puts("⬜️");
 
     return 0;
 }
