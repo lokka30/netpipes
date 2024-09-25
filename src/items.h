@@ -3,6 +3,7 @@
 
 #define PLANE_SIZE 8
 #define PLANE_SIZE_SQR PLANE_SIZE * PLANE_SIZE
+#define UNITS_PER_SOURCE 8
 
 typedef enum ItemType {
     AIR = 0,

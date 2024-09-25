@@ -27,4 +27,9 @@ void network_color_to_str(
     char str[11]
 );
 
+int64_t network_calc_balance(
+    item_t iplane[PLANE_SIZE][PLANE_SIZE],
+    uint32_t net_id
+);
+
 #endif

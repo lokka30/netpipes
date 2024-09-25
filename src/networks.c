@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include "networks.h"
+#include "misc.h"
 
 int32_t _networkinate_item(
     item_t iplane[PLANE_SIZE][PLANE_SIZE],
@@ -200,6 +201,20 @@ int32_t networkinate_plane(
         }
     }
 
+    // TODO move balance report to separate function
+    printf("Network Balance Report:\n");
+    for (uint32_t net_id = 0u; flattened_ids[net_id] != 0; net_id++) {
+        int64_t balance = network_calc_balance(iplane, net_id);
+        printf(
+            " -> Balance of network #%u is %lld (%s%s%s)\n", 
+            net_id, 
+            balance, 
+            balance >= 0 ? LIGHT_GREEN : LIGHT_RED, 
+            balance >= 0 ? "Balanced" : "Unbalanced", 
+            LIGHT_WHITE
+        );
+    }
+
     return error;
 }
 
@@ -209,4 +224,34 @@ void network_color_to_str(
 ) {
     int32_t color_code = 32 + (net_id % 6);
     sprintf(str, "\033[1;%dm", color_code);
+}
+
+int64_t network_calc_balance(
+    item_t iplane[PLANE_SIZE][PLANE_SIZE],
+    uint32_t net_id
+) {
+    // count sources and sinks in the network of net_id
+    uint32_t sources = 0;
+    uint32_t sinks = 0;
+
+    for (uint32_t xpos = 0; xpos < PLANE_SIZE; xpos++) {
+        for (uint32_t ypos = 0; ypos < PLANE_SIZE; ypos++) {
+            item_t item = iplane[xpos][ypos];
+            if(item.net_id != net_id) {
+                continue;
+            }
+            switch(item.type) {
+                case SOURCE:
+                    sources++;
+                    break;
+                case SINK:
+                    sinks++;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    return ((int64_t) sources * UNITS_PER_SOURCE) - (int64_t) sinks;
 }

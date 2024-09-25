@@ -7,11 +7,6 @@
 #include "networks.h"
 #include "misc.h"
 
-#define LIGHT_GREEN     "\033[1;32m"
-#define LIGHT_WHITE     "\033[1;37m"
-#define LIGHT_GRAY      "\033[0;37m"
-#define DARK_GRAY       "\033[1;30m"
-
 int32_t demo();
 
 int32_t print_plane_item_types(
