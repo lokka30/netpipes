@@ -99,7 +99,7 @@ int32_t networkinate_plane(
     }
     
     // check for errors
-    puts("DEBUG: Checking for errors");
+    //TODO move to separate function
     uint32_t current_flattened_net_id = 1;
     for (uint32_t xpos = 0u; xpos < PLANE_SIZE; xpos++) {
         for (uint32_t ypos = 0u; ypos < PLANE_SIZE; ypos++) {
@@ -119,19 +119,18 @@ int32_t networkinate_plane(
 
     /*
     flatten IDs
+    TODO: Move to separate function
     */
-    puts("DEBUG: Flattening IDs");
     uint32_t flattened_ids_len = PLANE_SIZE_SQR / 2;
     uint32_t flattened_ids[flattened_ids_len];
 
     // initialize array with zeroes
-    printf("DEBUG: Initializing array with zeroes, len=%u\n", flattened_ids_len);
     for (uint32_t i = 0u; i < flattened_ids_len; i++) {
         flattened_ids[i] = 0;
     }
 
     // assign flattened IDs for all net_ids
-    puts("DEBUG: Assigning flattened IDs for all net_ids");
+    //TODO move to separate function
     for (uint32_t xpos = 0u; xpos < PLANE_SIZE; xpos++) {
         for (uint32_t ypos = 0u; ypos < PLANE_SIZE; ypos++) {
             item_t item = iplane[xpos][ypos];
@@ -153,7 +152,6 @@ int32_t networkinate_plane(
                     // add flattened variant
                     flattened_ids[i] = net_id;
                     assigned_flattened_id = true;
-                    printf("DEBUG: Netid %u is becoming %u\n", net_id, i);
                     break;
                 }
             }
@@ -166,7 +164,7 @@ int32_t networkinate_plane(
     }
 
     // reassign network IDs to large values to prevent conflicts since flattened values start at 1
-    puts("DEBUG: Reassigning network IDs to large values");
+    //TODO move to separate function
     for (uint32_t xpos = 0u; xpos < PLANE_SIZE; xpos++) {
         for (uint32_t ypos = 0u; ypos < PLANE_SIZE; ypos++) {
             item_t item = iplane[xpos][ypos];
@@ -176,18 +174,13 @@ int32_t networkinate_plane(
                 continue;
             }
 
-            printf("DEBUG: Item @%u,%u is type(%u)=%s, netid=%u\n", xpos, ypos, (uint32_t) item.type, item_type_to_name(item.type), item.net_id);
-
             uint32_t newid = PLANE_SIZE_SQR - (net_id - 1);
-
             iplane[xpos][ypos].net_id = newid;
-
-            printf("DEBUG: Item @%u,%u is type(%u)=%s, netid=%u\n", xpos, ypos, (uint32_t) item.type, item_type_to_name(item.type), newid);
         }
     }
 
     // reassign network IDs to actual flattened values
-    puts("DEBUG: Reassigning network IDs to actual flattened values");
+    //TODO move to separate function
     for (uint32_t xpos = 0u; xpos < PLANE_SIZE; xpos++) {
         for (uint32_t ypos = 0u; ypos < PLANE_SIZE; ypos++) {
             item_t item = iplane[xpos][ypos];
@@ -206,8 +199,6 @@ int32_t networkinate_plane(
             }
         }
     }
-    
-    puts("DEBUG: Done");
 
     return error;
 }
