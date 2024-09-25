@@ -11,6 +11,7 @@ int32_t main() {
         fprintf(stderr, "\n+===============+");
         fprintf(stderr, "| MALFUNCTION %d |\n", error);
         fprintf(stderr, "+===============+");
+        fprintf(stderr, "This is the Big Sad :( No good! Error code: %d\n", error);");
     }
     return error;
 }
