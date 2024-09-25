@@ -24,6 +24,8 @@ char* item_type_to_name(item_type_t item_type) {
             return "Source";
         case SINK:
             return "Sink";
+        case PIPE:
+            return "Pipe";
         default:
             return "?";
     }

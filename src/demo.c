@@ -9,9 +9,12 @@ int32_t print_plane_item_types(
         for(uint32_t ypos = 0; ypos < ylen; ypos++) {
             item_t item = iplane[xpos][ypos];
 
+            char network_color[11] = { '\0' };
+            network_color_to_str(item.net_id, network_color);
+
             printf(
                 "%s%s%s   ",
-                item.type == AIR ? LIGHT_GRAY : LIGHT_GREEN,
+                item.type == AIR ? LIGHT_GRAY : network_color,
                 item_type_to_str(item.type),
                 LIGHT_WHITE
             );
@@ -30,9 +33,12 @@ int32_t print_plane_network_ids(
         for(uint32_t ypos = 0; ypos < ylen; ypos++) {
             item_t item = iplane[xpos][ypos];
 
+            char network_color[11] = { '\0' };
+            network_color_to_str(item.net_id, network_color);
+
             printf(
-                "%s%hhu%s   ",
-                item.net_id == 0 ? LIGHT_GRAY : LIGHT_GREEN,
+                "%s%-3hhu%s ",
+                item.net_id == 0 ? LIGHT_GRAY : network_color,
                 item.net_id,
                 LIGHT_WHITE
             );
@@ -51,9 +57,12 @@ int32_t print_plane_adjacently(
         for(uint32_t ypos = 0; ypos < ylen; ypos++) {
             item_t item = iplane[xpos][ypos];
 
+            char network_color[11] = { '\0' };
+            network_color_to_str(item.net_id, network_color);
+
             printf(
                 "%s%s%s   ",
-                item.type == AIR ? LIGHT_GRAY : LIGHT_GREEN,
+                item.type == AIR ? LIGHT_GRAY : network_color,
                 item_type_to_str(item.type),
                 LIGHT_WHITE
             );
@@ -67,9 +76,12 @@ int32_t print_plane_adjacently(
             swprintf(net_id_str, sizeof(net_id_str) / sizeof(wchar_t), L"%hhu", item.net_id);
             to_superscript_wchar(net_id_str, net_id_super);
 
+            char network_color[11] = { '\0' };
+            network_color_to_str(item.net_id, network_color);
+
             wprintf(
-                L" %s%ls%s  ",
-                item.net_id == 0 ? LIGHT_GRAY : LIGHT_GREEN,
+                L" %s%-2ls%s ",
+                item.net_id == 0 ? LIGHT_GRAY : network_color,
                 net_id_super,
                 LIGHT_WHITE
             );
@@ -88,15 +100,13 @@ int32_t demo() {
     );
 
     int32_t error = 0;
-    uint32_t current_network_id = 0;
     item_t iplane[PLANE_SIZE][PLANE_SIZE];
 
     puts("Initializing test plane...");
     init_test_plane(iplane, PLANE_SIZE, PLANE_SIZE);
     
     puts("Networkinating test plane...");
-    uint32_t net_id = 0;
-    networkinate_plane(iplane, PLANE_SIZE, PLANE_SIZE, &net_id);
+    networkinate_plane(iplane);
 
     // Show Item Types
     printf("%s\nItem Types:\n", LIGHT_WHITE);
@@ -126,7 +136,7 @@ int32_t init_test_plane(
     uint32_t xlen,
     uint32_t ylen
 ) {
-    #define ROWS 6
+    #define ROWS 8
     #define COLUMNS 8
 
     if(xlen < ROWS || ylen < COLUMNS) {
@@ -135,12 +145,14 @@ int32_t init_test_plane(
 
     // character representations of the item types to fill the item plane
     char repr_test_plane[ROWS][COLUMNS] = {
-        {'+', '-', '-', '-', '-', '-', '-', '*'},
-        {' ', ' ', '*', ' ', '+', ' ', '-', ' '},
-        {' ', ' ', ' ', ' ', ' ', ' ', '-', '*'},
+        {'+', '-', '-', ' ', '-', '-', '-', '*'},
+        {'-', ' ', '*', ' ', '+', ' ', '-', ' '},
+        {'*', ' ', ' ', ' ', ' ', ' ', '-', '*'},
         {' ', '*', '-', '+', '-', '*', ' ', ' '},
-        {' ', ' ', '-', ' ', '*', ' ', ' ', ' '},
-        {' ', ' ', '*', ' ', ' ', ' ', ' ', ' '}
+        {'+', ' ', '-', ' ', '*', ' ', '*', ' '},
+        {'-', ' ', '*', ' ', ' ', ' ', '-', '*'},
+        {'-', '*', ' ', '-', '*', ' ', '-', ' '},
+        {'-', '*', ' ', '+', '-', '-', '-', '+'},
     };
 
     for(uint32_t xpos = 0u; xpos < xlen; xpos++) {
